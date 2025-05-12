@@ -1,0 +1,440 @@
+body {
+  background: linear-gradient(to bottom, #ffe6f0, #ffffff);
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  color: #d63384;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+h1 {
+  font-size: 3rem;
+  margin: 1rem 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 1rem;
+}
+
+#counter {
+  position: fixed;
+  top: 20px;
+  right: 30px;
+  font-size: 1.3rem;
+  background-color: #fff0f5;
+  border: 2px solid #ffc0cb;
+  padding: 10px 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px #ffb6c1;
+  z-index: 999;
+}
+
+#clicker-img {
+  user-select: none;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+  width: 280px;
+  height: auto;
+  margin-top: 1rem;
+}
+
+#clicker-img:active {
+  transform: scale(0.95);
+}
+
+aside#shop {
+  width: 280px;
+  background-color: #fff0f6;
+  border-radius: 20px;
+  padding: 1rem;
+  margin-right: 2rem;
+  box-shadow: 4px 4px 12px rgba(255, 182, 193, 0.5);
+  border: 2px solid #ffcce0;
+}
+
+.shop-tabs {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1rem;
+}
+
+.shop-tabs button {
+  background-color: #ffe4ec;
+  border: none;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  color: #d63384;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px #ffcce0;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.shop-tabs button.active {
+  background-color: #ffcee6;
+}
+
+.shop-tabs button:hover {
+  background-color: #ffb6d9;
+  transform: scale(1.05);
+}
+
+.shop-item {
+  background-color: #ffffff;
+  border: 2px solid #ffcce0;
+  border-radius: 15px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  box-shadow: 2px 2px 10px rgba(255, 182, 193, 0.3);
+  position: relative;
+}
+
+.shop-item img {
+  width: 60px;
+  height: 60px;
+  margin-right: 1rem;
+  border-radius: 10px;
+  border: 1px solid #ffcce0;
+}
+
+.shop-info h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.shop-info .tooltip {
+  font-size: 0.9rem;
+  margin: 0.25rem 0;
+  color: #aa2c72;
+}
+
+.buy-btn {
+  background-color: #ffb3d9;
+  border: none;
+  padding: 0.5rem 0.8rem;
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 0.3rem;
+  transition: background-color 0.2s ease;
+}
+
+.buy-btn:hover {
+  background-color: #e695c1;
+}
+
+main {
+  flex-grow: 1;
+  text-align: center;
+}
+
+#baker-display {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #fff8fb;
+  border: 2px solid #ffd6e8;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(255, 182, 193, 0.4);
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.baker-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
+  gap: 1rem;
+}
+
+.baker-row img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid #ffc0cb;
+}
+
+#bake-progress {
+  width: 80%;
+  height: 30px;
+  background-color: #ffe4ec;
+  border-radius: 10px;
+  border: 2px solid #ffb6c1;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none; /* Initially hidden */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#batch-count {
+  font-weight: bold;
+  color: #d63384;
+  margin-bottom: 5px;
+}
+
+#progress-bar {
+  width: 0%;
+  height: 100%;
+  background-color: #ff66a3;
+  border-radius: 10px;
+  transition: width 0.5s ease-in-out;
+}
+
+/* Settings Button */
+#settings-btn {
+  position: fixed;
+  top: 90px; /* Places it just below the counter */
+  right: 40px;
+  font-size: 1.3rem;
+  background-color: #fff0f5; /* Matches counter */
+  border: 2px solid #ffc0cb;
+  padding: 10px 20px;
+  border-radius: 15px; /* Matches counter */
+  box-shadow: 0 0 10px #ffb6c1;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+}
+
+#settings-btn:hover {
+  background-color: #ffd6e8;
+  transform: scale(1.05);
+}
+
+
+/* Animated pop-up for settings menu */
+#settings-menu {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 300px; /* Adjust width */
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  scale: 0.8;
+  transition: opacity 0.3s ease-in-out, scale 0.3s ease-in-out;
+}
+
+#settings-menu.active {
+  opacity: 1;
+  scale: 1;
+}
+
+
+#settings-menu button {
+  display: block;
+  margin: 10px auto;
+  padding: 8px 12px;
+  border: 2px solid #ff6aab; /* Darker pink border */
+  background-color: #ff92c9; /* Button fill */
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+}
+
+#settings-menu button:hover {
+  background-color: #ff6aab; /* Slightly darker pink on hover */
+  transform: scale(1.05);
+}
+
+#shop-items {
+  height: 300px; /* Fixed height */
+  overflow-y: auto; /* Enable vertical scrolling */
+  scrollbar-width: thin; /* Custom scrollbar width */
+  scrollbar-color: #d63384 #ffe4ec; /* Dark pink track, light pink background */
+}
+
+#shop-items::-webkit-scrollbar {
+  width: 8px;
+}
+
+#shop-items::-webkit-scrollbar-thumb {
+  background-color: #d63384; /* Pink scrollbar */
+  border-radius: 10px;
+}
+
+#volume-slider {
+  width: 200px;
+  appearance: none;
+}
+
+#volume-slider::-webkit-slider-runnable-track {
+  background-color: #ffe4ec; /* Light pink line */
+  height: 9px;
+  border-radius: 10px;
+  border: 2px solid #fea9d4; /* Dark pink border */
+}
+
+#volume-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  background-color: #d63384; /* Pink dot */
+  border-radius: 80%;
+  cursor: pointer;
+  position: relative;
+}
+
+#notification-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  z-index: 9999;
+}
+
+.notification {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  padding: 12px;
+  margin: 8px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  opacity: 0;
+  animation: fadeIn 0.5s forwards, fadeOut 0.5s ease-out 5s forwards;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.notification.persistent {
+  opacity: 1 !important;
+  animation: none;
+}
+
+.notification img {
+  width: 60px;
+  height: 60px;
+  margin-right: 10px;
+}
+
+.notification-text {
+  flex-grow: 1;
+  font-size: 1rem;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.achievement {
+  border-left: 5px solid #4CAF50;
+  background-color: #E8F5E9;
+}
+
+.error {
+  border-left: 5px solid #E74C3C;
+  background-color: #FDEDEC;
+}
+
+.info {
+  border-left: 5px solid #3498DB;
+  background-color: #EAF2F8;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+#achievements-window {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 400px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  overflow-y: auto; /* Enable scrolling */
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  opacity: 0;
+}
+
+#achievements-window.active {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+#achievements-list {
+  padding: 10px;
+  text-align: left;
+}
+
+#achievements-window button {
+  margin: 10px auto;
+  padding: 8px 12px;
+  border: none;
+  background-color: #d63384;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#game-footer {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 1rem;
+  color: #d63384;
+  background-color: rgba(255, 240, 246, 0.8);
+  padding: 8px 12px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.support-links {
+  display: flex;
+  gap: 10px;
+}
+
+.support-links a {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  color: #d63384;
+}
+
+.support-links img {
+  width: 20px;
+  height: 20px;
+}
+
+.support-links a:hover {
+  color: #e878b0;
+  transform: scale(1.05);
+}
